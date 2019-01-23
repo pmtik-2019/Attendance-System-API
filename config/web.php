@@ -5,7 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
-    'name' => 'Sistem Presensi',
+    'name' => 'Sistem Presensi Maganger',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
