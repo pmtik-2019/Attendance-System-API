@@ -31,6 +31,6 @@ class UserController extends Controller
 
     public function actionIndex()
     {
-        echo 'halaman user';
+        return $this->render('index');
     }
 }

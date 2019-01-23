@@ -31,6 +31,6 @@ class AdminController extends Controller
 
     public function actionIndex()
     {
-        echo 'halaman admin';
+        return $this->render('index');
     }
 }

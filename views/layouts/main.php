@@ -11,9 +11,12 @@ use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
 
 AppAsset::register($this);
+$this->title = 'Sistem Informasi Presensi Magang UPT. TIK UNS';
 ?>
+
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
+
 <html lang="<?= Yii::$app->language ?>">
 <head>
     <meta charset="<?= Yii::$app->charset ?>">
