@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
     <h1><?= Html::encode($this->title) ?></h1>
-
+    <p>Silahkan masukkan username dan password akun anda untuk mengakses halaman utama.</p>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'layout' => 'horizontal',
@@ -21,6 +21,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
         ],
     ]); ?>
+
+        <!-- Sementara, nanti diubah menggunakan active record
+            Atau mungkin memang bisa dibuat static -->
+        <div class="form-group">
+            <label class="col-lg-1 control-label" for="login_as">Login As</label>
+            <div class="col-lg-3">
+                <select name="login_as" id="login_as" class="form-control">
+                    <option value="0">Maganger</option>
+                    <option value="1">Administrator</option>
+                </select>
+            </div>
+        </div>
 
         <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
 
