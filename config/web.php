@@ -13,6 +13,23 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'assetManager'=>[
+                 'class'=>'yii\web\AssetManager',
+                 'bundles'=>[
+                 //--------
+                     'insolita\wgadminlte\JsCookieAsset'=>[
+                           'depends'=>[
+                               'yii\web\YiiAsset',
+                               'namespace\for\AdminLteAsset', // for example 'dmstr\web\AdminLteAsset', if we use https://github.com/dmstr/yii2-adminlte-asset
+                          ]
+                     ],
+                      'insolita\wgadminlte\CollapseBoxAsset'=>[
+                            'depends'=>[
+                                'insolita\wgadminlte\JsCookieAsset'
+                            ]
+                      ],
+             ],
+     ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'VILj5fJwr_mdNMt9Wu8HxDH-czBJO3yK',

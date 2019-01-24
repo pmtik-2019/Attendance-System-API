@@ -7,6 +7,7 @@ use yii\helpers\Url;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 
+
 class AdminController extends Controller
 {
     public $layout = 'sidebar';
@@ -28,19 +29,19 @@ class AdminController extends Controller
                 'url' => Url::to(['/admin/divisi']),
                 'view' => 'divisi',
                 'label' => 'Divisi',
-                'icon' => 'book',
+                'icon' => 'cog',
             ],
             [
                 'url' => Url::to(['/admin/maganger']),
                 'view' => 'manganger',
                 'label' => 'Maganger',
-                'icon' => 'book',
+                'icon' => 'user',
             ],
             [
                 'url' => Url::to(['/admin/absensi']),
                 'view' => 'absensi',
                 'label' => 'Absensi',
-                'icon' => 'book',
+                'icon' => 'list-alt',
             ],
             [
                 'url' => Url::to(['/admin/laporan']),
