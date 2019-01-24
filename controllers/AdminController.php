@@ -72,7 +72,7 @@ class AdminController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','divisi'],
                         'roles' => ['@'],
                         'matchCallback' => function($rule, $action) {
                             // TODO: Change this
@@ -87,5 +87,9 @@ class AdminController extends Controller
     public function actionIndex()
     {
         return $this->_render('index');
+    }
+    public function actionDivisi()
+    {
+        return $this->_render('divisi');
     }
 }

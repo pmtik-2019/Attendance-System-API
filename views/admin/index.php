@@ -8,15 +8,35 @@ $this->title = 'My Yii Application';
     <div class="body-content">
         <div class="row">
         	 <div class="col-lg-6">
-			 <?php echo \insolita\wgadminlte\LteSmallBox::widget([
-                       'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
-                       'title' => '90%',
-                       'text' => 'Free Space',
+			     <?php echo \insolita\wgadminlte\LteSmallBox::widget([
+                       'type' => \insolita\wgadminlte\LteConst::COLOR_ORANGE,
+                       'title' => '5',
+                       'text' => 'Admin',
                        'icon' => 'fa fa-cloud-download',
                        'footer' => 'Lihat Semuanya ',
                        'link' => '#'
                    ]);?>
         	 </div>
+            <div class="col-lg-6">
+           <?php echo \insolita\wgadminlte\LteSmallBox::widget([
+                       'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
+                       'title' => '20',
+                       'text' => 'Maganger',
+                       'icon' => 'fa fa-cloud-download',
+                       'footer' => 'Lihat Semuanya ',
+                       'link' => '#'
+                   ]);?>
+           </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <h3>Instruksi Menggunakan Aplikasi Sistem Informasi Presensi Maganger</h3>
+                <br/>
+                1. Gunakan NIM Anda untuk LOGIN <br/>
+                2. Pilih Button "Masuk" atau "Keluar" <br/>
+                3. Melihat jumlah admin dan maganger di menu "Home" <br/>
+                4. Menambahkan divisi atau melihat data divisi melalui menu "Divisi" <br/>
+            </div>
         </div>
 
     </div>
