@@ -10,9 +10,25 @@
             <div class="box-header">
               <h3 class="box-title">Laporan Presensi Magang</h3>
             </div>
-            <!-- /.box-header -->
+            <div class="form-inline pull-right">
+              <label>Search:         
+              <input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"
+              ></label>
+</div>
+                <div class="form-inline pull-left">
+                <label>Show
+                <select name="example1_length" aria-controls="example1" class="form-control input-sm">
+                  <option value="10">10</option>
+                  <option value="25">25</option>
+                  <option value="50">50</option>
+                  <option value="100">100</option>
+                </select> entries</label>
+            </div>
+            
+    </div>
+              <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>
                 <tr>
                   <th>No</th>
@@ -50,18 +66,19 @@
                 </tfoot>
               </table>
             </div>
-            <!-- /.box-body -->
-          </div>
-		</div>
-		</div>
-	
-		<ul class="pagination pagination-sm">
+            <ul class="pagination pagination-sm pull-right">
 			<li><a href="#">&laquo;</a></li>
 			<li><a href="#">1</a></li>
 			<li><a href="#">2</a></li>
 			<li><a href="#">3</a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
+            <!-- /.box-body -->
+          </div>
+		</div>
+		</div>
+	
+
   
 	</div>
 

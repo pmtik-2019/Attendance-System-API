@@ -1,0 +1,14 @@
+html,
+body {
+    height: 100%;
+}
+.dropdown-menu {
+    box-shadow: none;
+    border-color: #eee;
+  }
+.box-header{
+    color:#444;
+    display: block;
+    padding: 10px;
+    position: relative;
+}
