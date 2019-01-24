@@ -1,0 +1,21 @@
+<?php
+
+use yii\helpers\Html;
+
+/* @var $this yii\web\View */
+/* @var $model app\models\Divisi */
+
+$this->title = 'Update Divisi: ' . $model->kode_divisi;
+$this->params['breadcrumbs'][] = ['label' => 'Divisis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => $model->kode_divisi, 'url' => ['view', 'id' => $model->kode_divisi]];
+$this->params['breadcrumbs'][] = 'Update';
+?>
+<div class="divisi-update">
+
+    <h1><?= Html::encode($this->title) ?></h1>
+
+    <?= $this->render('_form', [
+        'model' => $model,
+    ]) ?>
+
+</div>

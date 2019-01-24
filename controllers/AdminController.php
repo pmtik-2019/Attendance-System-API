@@ -6,7 +6,10 @@ use Yii;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 use yii\web\Controller;
-
+use app\models\Divisi;
+use app\models\DivisiSearch;
+use yii\web\NotFoundHttpException;
+use yii\filters\VerbFilter;
 
 class AdminController extends Controller
 {
@@ -54,7 +57,7 @@ class AdminController extends Controller
 
     private function _render($view, $context = []) {
         $this->sidebar_items = array_map(function ($item) use($view) {
-            if ($item['view'] == $view) {
+            if ($item['view'] == explode('/', $view)[0]) {
                 $item['active'] = true;
             }
 
@@ -67,12 +70,17 @@ class AdminController extends Controller
     public function behaviors()
     {
         return [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'divisi-delete' => ['POST'],
+                ],
+            ],
             'access' => [
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index','divisi'],
                         'roles' => ['@'],
                         'matchCallback' => function($rule, $action) {
                             // TODO: Change this
@@ -88,8 +96,64 @@ class AdminController extends Controller
     {
         return $this->_render('index');
     }
+
     public function actionDivisi()
     {
-        return $this->_render('divisi');
+        $searchModel = new DivisiSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->_render('divisi/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionDivisiCreate()
+    {
+        $model = new Divisi();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['divisi-view', 'id' => $model->kode_divisi]);
+        }
+
+        return $this->_render('divisi/create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDivisiView($id)
+    {
+        return $this->_render('divisi/view', [
+            'model' => $this->findModel($id),
+        ]);
+    }
+
+    public function actionDivisiUpdate($id)
+    {
+        $model = $this->findModel($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['divisi-view', 'id' => $model->kode_divisi]);
+        }
+
+        return $this->_render('divisi/update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionDivisiDelete($id)
+    {
+        $this->findModel($id)->delete();
+
+        return $this->redirect(['divisi']);
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Divisi::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
     }
 }

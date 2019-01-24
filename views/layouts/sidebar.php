@@ -78,9 +78,9 @@
             NavBar::end();
             ?>
          <div class="container">
-            <?= Breadcrumbs::widget([
-               'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
-               ]) ?>
+         <?= Breadcrumbs::widget([
+                  'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
+            ]) ?>
             <?= Alert::widget() ?>
             <div class="row">
                <div class="col-lg-3">

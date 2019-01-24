@@ -12,3 +12,7 @@ body {
     padding: 10px;
     position: relative;
 }
+
+.summary {
+    margin-bottom: 10px;
+}
