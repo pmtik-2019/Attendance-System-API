@@ -8,7 +8,7 @@ use yii\web\Controller;
 
 class UserController extends Controller
 {
-
+    public $layout = 'sidebar';
     public function behaviors()
     {
         return [
@@ -17,7 +17,7 @@ class UserController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['index'],
+                        'actions' => ['index','laporan'],
                         'roles' => ['@'],
                         'matchCallback' => function($rule, $action) {
                             // TODO: Change this
@@ -32,5 +32,9 @@ class UserController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    public function actionLaporan()
+    {
+        return $this->render('laporan');
     }
 }

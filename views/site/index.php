@@ -9,7 +9,7 @@
     <div class="jumbotron">
         <h1>Selamat Datang!</h1>
 
-        <p class="lead">Silahkan melakukan absensi dengan mengisi form dibawah ini.</p>
+        <p class="lead">Silahkan melakukan presensi dengan mengisi form dibawah ini.</p>
     </div>
 
     <div class="body-content">
