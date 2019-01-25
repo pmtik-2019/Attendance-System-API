@@ -42,7 +42,7 @@
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="text" class="form-control" id="nim" readonly>
+                                        <input type="date" class="form-control" id="nim" readonly>
                                     </div>
                                     
                                 </div>
