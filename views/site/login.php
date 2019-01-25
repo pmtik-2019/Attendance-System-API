@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>Silahkan masukkan username dan password akun anda untuk mengakses halaman utama.</p>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
-        'layout' => 'horizontal',
+        'layout' => 'horizontal', 
         'fieldConfig' => [
             'template' => "{label}\n<div class=\"col-lg-3\">{input}</div>\n<div class=\"col-lg-8\">{error}</div>",
             'labelOptions' => ['class' => 'col-lg-1 control-label'],
@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <label class="col-lg-1 control-label" for="login_as">Login As</label>
             <div class="col-lg-3">
-                <select name="login_as" id="login_as" class="form-control">
+                <select name="LoginForm[login_as]" id="LoginForm[login_as]" class="form-control">
                     <option value="0">Maganger</option>
                     <option value="1">Administrator</option>
                 </select>
