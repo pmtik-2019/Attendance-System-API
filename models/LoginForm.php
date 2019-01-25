@@ -4,6 +4,8 @@ namespace app\models;
 
 use Yii;
 use yii\base\Model;
+use app\models\Identity;
+
 
 /**
  * LoginForm is the model behind the login form.
@@ -15,6 +17,7 @@ class LoginForm extends Model
 {
     public $username;
     public $password;
+    public $login_as;
     public $rememberMe = true;
 
     private $_user = false;
@@ -27,7 +30,13 @@ class LoginForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
+            [['username', 'password', 'login_as'], 'required'],
+            [
+                'login_as',
+                'integer',
+                'integerOnly' => true, 
+                'min' => 0, 'max' => 1
+            ],
             // rememberMe must be a boolean value
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
@@ -73,7 +82,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = Identity::findIdentityByUsername($this->login_as, $this->username);
         }
 
         return $this->_user;

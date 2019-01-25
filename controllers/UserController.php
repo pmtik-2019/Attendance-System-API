@@ -6,6 +6,8 @@ use Yii;
 use yii\filters\AccessControl;
 use app\controllers\base\BaseController;
 
+use app\models\Identity;
+
 class UserController extends BaseController
 {
     public $layout = 'sidebar';
@@ -18,7 +20,7 @@ class UserController extends BaseController
     
     // Define the authentication check progress here
     public static function authenticate($rule, $action) {
-        return Yii::$app->user->identity->username != 'admin';
+        return Yii::$app->user->identity->_type == Identity::TYPE_MAGANGER;
     }
 
     public function behavior()

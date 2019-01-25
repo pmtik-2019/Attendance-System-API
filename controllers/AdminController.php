@@ -15,6 +15,8 @@ use app\models\AbsensiSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
+use app\models\Identity;
+
 class AdminController extends Controller
 {
     public $layout = 'sidebar';
@@ -90,7 +92,7 @@ class AdminController extends Controller
                         'roles' => ['@'],
                         'matchCallback' => function($rule, $action) {
                             // TODO: Change this
-                            return Yii::$app->user->identity->username == 'admin';
+                            return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
                         }
                     ],
                 ],

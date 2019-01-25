@@ -72,4 +72,13 @@ class Maganger extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Divisi::className(), ['kode_divisi' => 'kode_divisi']);
     }
+
+    public function beforeSave($insert) {
+
+        if ($insert) {
+            $this->password_maganger = Yii::$app->getSecurity()->generatePasswordHash($this->password_maganger);
+        }
+    
+        return parent::beforeSave($insert);
+    }
 }

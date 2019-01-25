@@ -22,9 +22,11 @@ use app\models\Divisi;
 
     <?= $form->field($model, 'password_maganger')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_maganger')->textInput() ?>
+    <?= $form->field($model, 'status_maganger')->dropDownList(
+        ['0' => 'Tidak Aktif', '1' => 'Aktif']
+    ) ?>
 
-    <div class="form-group">
+     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
