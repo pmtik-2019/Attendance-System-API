@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 ?>
-
+ <td><button type="button" class="btn btn-primary"><i class="glyphicon glyphicon-cog"></i> Primary</button></td>
 <form class="form-horizontal" action="#">
   <div class="form-group">
     <label class="control-label col-sm-2" for="id_divisi">ID Divisi:</label>

@@ -8,6 +8,8 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Divisi;
 use app\models\DivisiSearch;
+use app\models\Absensi;
+use app\models\AbsensiSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -74,6 +76,7 @@ class AdminController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'divisi-delete' => ['POST'],
+                    'absensi-delete' => ['POST'],
                 ],
             ],
             'access' => [
@@ -151,6 +154,66 @@ class AdminController extends Controller
     protected function findModel($id)
     {
         if (($model = Divisi::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    //Absensii
+    public function actionAbsensi()
+    {
+        $searchModel = new AbsensiSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->_render('absensi/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionAbsensiCreate()
+    {
+        $model = new Absensi();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['absensi-view', 'id' => $model->id_divisi]);
+        }
+
+        return $this->_render('absensi/create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAbsensiView($id)
+    {
+        return $this->_render('absensi/view', [
+            'model' => $this->findModelAbsensi($id),
+        ]);
+    }
+
+    public function actionAbsensiUpdate($id)
+    {
+        $model = $this->findModelAbsensi($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['absensi-view', 'id' => $model->id_absensi]);
+        }
+
+        return $this->_render('absensi/update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionAbsensiDelete($id)
+    {
+        $this->findModelAbsensi($id)->delete();
+
+        return $this->redirect(['absensi']);
+    }
+
+    protected function findModelAbsensi($id)
+    {
+        if (($model = Absensi::findOneAbsensi($id)) !== null) {
             return $model;
         }
 
