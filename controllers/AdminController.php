@@ -7,7 +7,9 @@ use yii\helpers\Url;
 use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Divisi;
+use app\models\Maganger;
 use app\models\DivisiSearch;
+use app\models\MagangerSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -36,7 +38,7 @@ class AdminController extends Controller
             ],
             [
                 'url' => Url::to(['/admin/maganger']),
-                'view' => 'manganger',
+                'view' => 'maganger',
                 'label' => 'Maganger',
                 'icon' => 'user',
             ],
@@ -74,6 +76,7 @@ class AdminController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'divisi-delete' => ['POST'],
+                    'maganger-delete' => ['POST'],
                 ],
             ],
             'access' => [
@@ -156,4 +159,65 @@ class AdminController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
+    public function actionMaganger()
+    {
+        $searchModel = new MagangerSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->_render('maganger/index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionMagangerCreate()
+    {
+        $model = new Maganger();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['maganger-view', 'id' => $model->nim]);
+        }
+
+        return $this->_render('maganger/create', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionMagangerView($id)
+    {
+        return $this->_render('maganger/view', [
+            'model' => $this->findModel1($id),
+        ]);
+    }
+
+    public function actionMagangerUpdate($id)
+    {
+        $model = $this->findModel1($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['maganger-view', 'id' => $model->nim]);
+        }
+
+        return $this->_render('maganger/update', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionMagangerDelete($id)
+    {
+        $this->findModel1($id)->delete();
+
+        return $this->redirect(['maganger']);
+    }
+
+    protected function findModel1($id)
+    {
+        if (($model = Maganger::findOne($id)) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
+
 }
