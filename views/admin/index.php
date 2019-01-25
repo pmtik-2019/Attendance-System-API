@@ -2,7 +2,8 @@
 
 /* @var $this yii\web\View */
 
-$this->title = 'My Yii Application';
+$this->title = 'Dashboard';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-index">
     <div class="body-content">

@@ -16,3 +16,13 @@ body {
 .summary {
     margin-bottom: 10px;
 }
+
+.footer-notification {
+    margin: 0px;
+    padding-top: 0px;
+    height: auto;
+}
+
+.header-notification {
+    font-weight: bold;
+}

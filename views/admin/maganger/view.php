@@ -25,15 +25,26 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
             'nim',
             'nama_maganger',
             'kode_divisi',
-            'password_maganger',
-            'status_maganger',
+            [
+                'attribute' => 'nama_divisi',
+                'value' => $model->kodeDivisi->nama_divisi
+            ],
+            [
+                'attribute' => 'password_maganger',
+                'value' => str_repeat('*', strlen($model->password_maganger))
+            ],
+            [
+                'attribute' => 'status_maganger',
+                'value' => function () use($model) {
+                    return ($model->status_maganger == 1) ? 'Aktif' : 'Non Aktif';
+                }
+            ],
         ],
     ]) ?>
 
