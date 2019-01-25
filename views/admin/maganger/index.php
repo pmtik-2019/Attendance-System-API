@@ -28,8 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'nim',
             'nama_maganger',
-            'kode_divisi',
-            'password_maganger',
+            'kodeDivisi.nama_divisi',
             'status_maganger',
 
             [
