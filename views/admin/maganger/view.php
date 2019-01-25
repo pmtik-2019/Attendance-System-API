@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Maganger */
 
 $this->title = $model->nim;
-$this->params['breadcrumbs'][] = ['label' => 'Magangers', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Maganger', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
