@@ -204,7 +204,7 @@ class AdminController extends Controller
         $model = new Absensi();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['absensi-view', 'id' => $model->id_divisi]);
+            return $this->redirect(['absensi-view', 'id' => $model->id_absensi]);
         }
 
         return $this->_render('absensi/create', [
@@ -277,7 +277,7 @@ class AdminController extends Controller
 
     protected function findModelAbsensi($id)
     {
-        if (($model = Absensi::findOneAbsensi($id)) !== null) {
+        if (($model = Absensi::findOne($id)) !== null) {
             return $model;
         }
 

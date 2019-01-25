@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Maganger */
 
-$this->title = 'Create Maganger';
-$this->params['breadcrumbs'][] = ['label' => 'Magangers', 'url' => ['index']];
+$this->title = 'Tambah Data Maganger';
+$this->params['breadcrumbs'][] = ['label' => 'Maganger', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="maganger-create">
