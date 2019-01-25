@@ -2,7 +2,6 @@
 
 /* @var $this yii\web\View */
 
-
 ?>
 <div class="site-index">
 
@@ -21,7 +20,7 @@
                     <div class="panel-heading">Presensi Online</div>
                     <div class="panel-body">
                         <p>Masukkan data anda pada kolom yang telah disediakan, untuk bagian tanggal dan waktu tidak dapat diubah secara manual oleh anda. Sistem akan menggunakan waktu <i>server</i>.</p>
-                        <form action="" class="form-horizontal">
+                        <form action="" class="form-horizontal form-absensi">
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <label class="radio-inline">
@@ -57,7 +56,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" id="laporan" style="display: none;">
                                 <label class="col-lg-2 control-label" for="nim">Laporan</label>
                                 <div class="col-lg-10">
                                     <textarea class="form-control" rows="3"></textarea>
