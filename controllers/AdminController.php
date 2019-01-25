@@ -9,7 +9,12 @@ use yii\web\Controller;
 use app\models\Divisi;
 use app\models\Maganger;
 use app\models\DivisiSearch;
+<<<<<<< HEAD
 use app\models\MagangerSearch;
+=======
+use app\models\Absensi;
+use app\models\AbsensiSearch;
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
@@ -76,7 +81,11 @@ class AdminController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'divisi-delete' => ['POST'],
+<<<<<<< HEAD
                     'maganger-delete' => ['POST'],
+=======
+                    'absensi-delete' => ['POST'],
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
                 ],
             ],
             'access' => [
@@ -159,6 +168,7 @@ class AdminController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+<<<<<<< HEAD
 
     public function actionMaganger()
     {
@@ -166,11 +176,21 @@ class AdminController extends Controller
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->_render('maganger/index', [
+=======
+    //Absensii
+    public function actionAbsensi()
+    {
+        $searchModel = new AbsensiSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->_render('absensi/index', [
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
+<<<<<<< HEAD
     public function actionMagangerCreate()
     {
         $model = new Maganger();
@@ -180,10 +200,22 @@ class AdminController extends Controller
         }
 
         return $this->_render('maganger/create', [
+=======
+    public function actionAbsensiCreate()
+    {
+        $model = new Absensi();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['absensi-view', 'id' => $model->id_divisi]);
+        }
+
+        return $this->_render('absensi/create', [
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
             'model' => $model,
         ]);
     }
 
+<<<<<<< HEAD
     public function actionMagangerView($id)
     {
         return $this->_render('maganger/view', [
@@ -200,10 +232,29 @@ class AdminController extends Controller
         }
 
         return $this->_render('maganger/update', [
+=======
+    public function actionAbsensiView($id)
+    {
+        return $this->_render('absensi/view', [
+            'model' => $this->findModelAbsensi($id),
+        ]);
+    }
+
+    public function actionAbsensiUpdate($id)
+    {
+        $model = $this->findModelAbsensi($id);
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['absensi-view', 'id' => $model->id_absensi]);
+        }
+
+        return $this->_render('absensi/update', [
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
             'model' => $model,
         ]);
     }
 
+<<<<<<< HEAD
     public function actionMagangerDelete($id)
     {
         $this->findModel1($id)->delete();
@@ -214,10 +265,25 @@ class AdminController extends Controller
     protected function findModel1($id)
     {
         if (($model = Maganger::findOne($id)) !== null) {
+=======
+    public function actionAbsensiDelete($id)
+    {
+        $this->findModelAbsensi($id)->delete();
+
+        return $this->redirect(['absensi']);
+    }
+
+    protected function findModelAbsensi($id)
+    {
+        if (($model = Absensi::findOneAbsensi($id)) !== null) {
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> a8e6d403a5773acfb3de861a480a09b299e47ae9
 }
