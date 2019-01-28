@@ -1,15 +1,12 @@
 <?php
 
 /* @var $this yii\web\View */
+$this->title = 'Laporan';
+$this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-index">
-	<div class="body-content">
-		<div class="row">
-		<div class="col-lg-12">
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Laporan Presensi Magang</h3>
-            </div>
+<div class="user-laporan">
+              <h1>Laporan Presensi Magang</h1>
+
             <div class="form-inline pull-right">
               <label>Search:         
               <input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"
@@ -73,13 +70,4 @@
 			<li><a href="#">3</a></li>
 			<li><a href="#">&raquo;</a></li>
 		</ul>
-            <!-- /.box-body -->
-          </div>
-		</div>
-		</div>
-	
-
-  
-	</div>
-
 </div>
