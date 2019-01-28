@@ -14,66 +14,27 @@ use app\models\Absensi;
 use app\models\AbsensiSearch;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\controllers\base\BaseController;
 
 use app\models\Identity;
 
-class AdminController extends Controller
+class AdminController extends BaseController
 {
     public $layout = 'sidebar';
     
-    public $sidebar_items;
+    public $sidebar = 'admin';
 
     public function __construct($id, $module, $config = [])
     {
         parent::__construct($id, $module, $config);
-
-        $this->sidebar_items = [
-            [
-                'url' => Url::to(['/admin/index']),
-                'view' => 'index',
-                'label' => 'Home',
-                'icon' => 'home',
-            ],
-            [
-                'url' => Url::to(['/admin/divisi']),
-                'view' => 'divisi',
-                'label' => 'Divisi',
-                'icon' => 'cog',
-            ],
-            [
-                'url' => Url::to(['/admin/maganger']),
-                'view' => 'maganger',
-                'label' => 'Maganger',
-                'icon' => 'user',
-            ],
-            [
-                'url' => Url::to(['/admin/absensi']),
-                'view' => 'absensi',
-                'label' => 'Absensi',
-                'icon' => 'list-alt',
-            ],
-            [
-                'url' => Url::to(['/admin/laporan']),
-                'view' => 'laporan',
-                'label' => 'Laporan',
-                'icon' => 'book',
-            ]
-        ];
     }
 
-    private function _render($view, $context = []) {
-        $this->sidebar_items = array_map(function ($item) use($view) {
-            if ($item['view'] == explode('/', $view)[0]) {
-                $item['active'] = true;
-            }
-
-            return $item;
-        }, $this->sidebar_items);
-
-        return $this->render($view, $context);
+    // Define the authentication check progress here
+    public static function authenticate($rule, $action) {
+        return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
     }
 
-    public function behaviors()
+    public function behavior()
     {
         return [
             'verbs' => [
@@ -82,19 +43,6 @@ class AdminController extends Controller
                     'divisi-delete' => ['POST'],
                     'maganger-delete' => ['POST'],
                     'absensi-delete' => ['POST'],
-                ],
-            ],
-            'access' => [
-                'class' => AccessControl::className(),
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'],
-                        'matchCallback' => function($rule, $action) {
-                            // TODO: Change this
-                            return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
-                        }
-                    ],
                 ],
             ],
         ];

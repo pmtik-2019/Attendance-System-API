@@ -11,21 +11,33 @@ class BaseController extends Controller {
     public $sidebar_items;
     public $sidebar = 'user';
     
+    public $active_view = null;
+
     public function __construct($id, $module, $config = []){
         parent::__construct($id, $module, $config);
 
         $this->sidebar_items = array();
-        switch ($this->sidebar) {
+
+        if (count(explode(':', $this->sidebar)) == 2) {
+            list($sidebar, $view) = explode(':', $this->sidebar);
+
+            $this->active_view = $view;
+        } else {
+            $sidebar = $this->sidebar;
+        }
+
+        switch ($sidebar) {
             case 'user':
                 $this->addSidebarItem('/user/index', 'index', 'Home', 'home');
                 $this->addSidebarItem('/user/laporan', 'laporan', 'Laporan', 'book');
             break;
             case 'admin':
                 $this->addSidebarItem('/admin/index', 'index', 'Home', 'home');
-                $this->addSidebarItem('/admin/divisi', 'divisi', 'Divisi', 'cog');
+                $this->addSidebarItem('/divisi', 'divisi', 'Divisi', 'cog');
                 $this->addSidebarItem('/admin/maganger', 'maganger', 'Maganger', 'user');
                 $this->addSidebarItem('/admin/absensi', 'absensi', 'Absensi', 'list-alt');
                 $this->addSidebarItem('/admin/laporan', 'laporan', 'Laporan', 'book');
+                $this->addSidebarItem('/manager', 'manager', 'Users', 'user');
             break;
         }
     }
@@ -83,8 +95,14 @@ class BaseController extends Controller {
     }
 
     protected function _render($view, $context = []) {
-        $this->sidebar_items = array_map(function ($item) use($view) {
-            $item['active'] = ($item['view'] == $view);
+        $activev = $this->active_view;
+
+        $this->sidebar_items = array_map(function ($item) use($view, $activev) {
+            if (is_null($activev)) {
+                $item['active'] = ($item['view'] == explode('/', $view)[0]);
+            } else {
+                $item['active'] = ($item['view'] == $activev);
+            }
 
             return $item;
         }, $this->sidebar_items);
