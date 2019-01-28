@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\AbsensiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Absensis';
+$this->title = 'Laporan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="absensi-index">
@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <!-- <p>
-        <?= Html::a('Create Absensi', ['absensi-create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Tambah Data Laporan', ['absensi-create'], ['class' => 'btn btn-success']) ?>
     </p> -->
 
     <?= GridView::widget([

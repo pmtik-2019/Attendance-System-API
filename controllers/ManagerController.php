@@ -3,8 +3,8 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Admin;
-use app\models\AdminSearch;
+use app\models\Maganger;
+use app\models\MagangerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;

@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Absensi */
 
-$this->title = 'Create Absensi';
+$this->title = 'Tambah Data Laporan';
 $this->params['breadcrumbs'][] = ['label' => 'Absensis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
