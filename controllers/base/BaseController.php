@@ -36,7 +36,7 @@ class BaseController extends Controller {
                 $this->addSidebarItem('/divisi', 'divisi', 'Divisi', 'cog');
                 $this->addSidebarItem('/maganger', 'maganger', 'Maganger', 'user');
                 $this->addSidebarItem('/absensi', 'absensi', 'Presensi', 'list-alt');
-                $this->addSidebarItem('/admin/laporan', 'laporan', 'Laporan', 'book');
+                $this->addSidebarItem('/laporan', 'laporan', 'Laporan', 'book');
                 $this->addSidebarItem('/manager', 'manager', 'Users', 'user');
             break;
         }

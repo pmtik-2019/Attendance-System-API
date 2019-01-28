@@ -3,21 +3,22 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Admin */
 
-$this->title = $model->id_admin;
-$this->params['breadcrumbs'][] = ['label' => 'Admins', 'url' => ['index']];
+/* @var $this yii\web\View */
+/* @var $model app\models\Absensi */
+
+$this->title = $model->id_absensi;
+$this->params['breadcrumbs'][] = ['label' => 'Presensi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-<div class="admin-view">
+<div class="absensi-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id_admin], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id_admin], [
+        <?= Html::a('Update', ['update', 'id' => $model->id_absensi], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Delete', ['delete', 'id' => $model->id_absensi], [
             'class' => 'btn btn-danger',
             'data' => [
                 'confirm' => 'Are you sure you want to delete this item?',
@@ -29,13 +30,12 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'username',
-            [
-                'attribute' => 'password_admin',
-                'value' => str_repeat('*', strlen($model->password_admin))
-            ],
+            'id_absensi',
+            'status_kedatangan',
+            'tanggal_waktu',
+            'laporan_kerja:ntext',
+            'nim',
         ],
-
     ]) ?>
 
 </div>
