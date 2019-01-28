@@ -23,7 +23,7 @@ $(document).ready(function() {
       _time.val((new Date()).toLocaleTimeString());
     }, 1000);
 
-    $('input[name="tipe"]').on("change", function() {
+    $('input[name="Absensi[status_kedatangan]"]').on("change", function() {
       if ($(this).val() == "2") {
         _laporan.slideDown(500);
       } else {
