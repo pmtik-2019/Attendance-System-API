@@ -26,6 +26,8 @@ $this->title = 'Sistem Informasi Presensi Magang UPT. TIK UNS';
     <title><?= Html::encode($this->title) ?></title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <?php $this->head() ?>
+
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <?php $this->beginBody() ?>
@@ -78,6 +80,7 @@ $this->title = 'Sistem Informasi Presensi Magang UPT. TIK UNS';
 </footer>
 
 <?php $this->endBody() ?>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </body>
 </html>
 <?php $this->endPage() ?>

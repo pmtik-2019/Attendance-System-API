@@ -1,8 +1,13 @@
 <?php
 
 /* @var $this yii\web\View */
-
+use yii\widgets\ActiveForm;
 ?>
+<script>
+    var availableTags = [<?php array_map(function ($obj) {
+        echo "{value: '{$obj->nim}', label: '{$obj->nim} - {$obj->nama_maganger}'}, ";
+    }, $model); ?>];
+</script>
 <div class="site-index">
 
     <div class="jumbotron">
@@ -18,57 +23,59 @@
                 <div class="panel panel-default">
                     <!-- Default panel contents -->
                     <div class="panel-heading">Presensi Online</div>
+                    <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal form-absensi']]); ?>
+
                     <div class="panel-body">
                         <p>Masukkan data anda pada kolom yang telah disediakan, untuk bagian tanggal dan waktu tidak dapat diubah secara manual oleh anda. Sistem akan menggunakan waktu <i>server</i>.</p>
-                        <form action="" class="form-horizontal form-absensi">
                             <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <label class="radio-inline">
-                                        <input type="radio" name="tipe" id="tipe1" value="1" checked> Berangkat
+                                        <input type="radio" name="Absensi[status_kedatangan]" id="tipe_berangkat" value="1" checked> Berangkat
                                     </label>
                                     <label class="radio-inline">
-                                        <input type="radio" name="tipe" id="tipe2" value="2"> Pulang
+                                        <input type="radio" name="Absensi[status_kedatangan]" id="tipe_pulang" value="2"> Pulang
                                     </label>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" for="nim">NIM</label>
+                                <label class="col-lg-2 control-label" for="Absensi[nim]">NIM</label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" id="nim">
+                                    <input type="text" class="form-control" id="nim" name="Absensi[nim]">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" for="nim">Tanggal</label>
+                                <label class="col-lg-2 control-label" for="date">Tanggal</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="date" class="form-control" id="nim" readonly>
+                                        <input type="date" class="form-control" id="date" readonly>
                                     </div>
                                     
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" for="nim">Waktu</label>
+                                <label class="col-lg-2 control-label" for="time">Waktu</label>
                                 <div class="col-lg-10">
                                     <div class="input-group">
                                         <span class="input-group-addon" id="basic-addon2"><i class="glyphicon glyphicon-time"></i></span>
-                                        <input type="text" class="form-control" id="nim" readonly>
+                                        <input type="text" class="form-control" id="time" readonly>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" id="laporan" style="display: none;">
-                                <label class="col-lg-2 control-label" for="nim">Laporan</label>
+                                <label class="col-lg-2 control-label" for="laporan_kerja">Laporan</label>
                                 <div class="col-lg-10">
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea class="form-control" name="Absensi[laporan_kerja]" id="laporan_kerja" rows="3"></textarea>
                                     <p class="help-block">Terkhusus untuk pulang, silahkan masukkan laporan kerja anda pada kolom yang telah disediakan.</p>
                                 </div>
                             </div>
-                        </form>
+                            
                         
                     </div>
                     <div class="panel-footer text-right">
-                        <a href="#" class="btn btn-primary"><i class="glyphicon glyphicon-bookmark"></i> Present!</a>
+                        <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-bookmark"></i> Present!</button>
                     </div>
+                    <?php $form = ActiveForm::end(); ?>
                 </div>
             </div>
         </div>

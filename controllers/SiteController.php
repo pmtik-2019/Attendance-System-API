@@ -7,6 +7,9 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\controllers\base\BaseController;
 
+use app\models\Maganger;
+use app\models\Absensi;
+
 class SiteController extends BaseController
 {
     public function __construct($id, $module, $config = [])
@@ -30,7 +33,22 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        $absensi = new Absensi();
+
+        $custom_post_model = Yii::$app->request->post();
+
+        $custom_post_model['Absensi']['tanggal_waktu'] = date("Y-m-d H:i:s");
+        if (empty($custom_post_model['Absensi']['laporan_kerja'])) {
+            $custom_post_model['Absensi']['laporan_kerja'] = null;
+        }
+        
+        if ($absensi->load($custom_post_model) && $absensi->save()) {
+            echo 'has been submitted!'; exit;
+        }
+
+        return $this->render('index', [
+            'model' => Maganger::find()->where(['status_maganger' => 1])->all(),
+        ]);
     }
 
     public function actionLogin()
