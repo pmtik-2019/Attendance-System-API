@@ -7,6 +7,8 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\controllers\base\BaseController;
 
+use app\models\Maganger;
+
 class SiteController extends BaseController
 {
     public function __construct($id, $module, $config = [])
@@ -30,7 +32,9 @@ class SiteController extends BaseController
 
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index', [
+            'model' => Maganger::find()->where(['status_maganger' => 1])->all()
+        ]);
     }
 
     public function actionLogin()
