@@ -12,7 +12,7 @@ class m190129_081749_remove_gambar_column_intruksi extends Migration
      */
     public function safeUp()
     {
-
+        $this->dropColumn('intruksi', 'gambar');
     }
 
     /**
@@ -20,9 +20,7 @@ class m190129_081749_remove_gambar_column_intruksi extends Migration
      */
     public function safeDown()
     {
-        echo "m190129_081749_remove_gambar_column_intruksi cannot be reverted.\n";
-
-        return false;
+        $this->addColumn('intruksi', 'gambar', $this->string(100)->notNull());
     }
 
     /*
