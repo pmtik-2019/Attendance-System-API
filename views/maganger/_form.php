@@ -20,7 +20,7 @@ use app\models\Divisi;
 
     <?= $form->field($model, 'kode_divisi')->dropDownList(ArrayHelper::map(Divisi::find()->all(), 'kode_divisi', 'nama_divisi'), array('promp' => 'Pilih Divisi')) ?>
 
-    <?= $form->field($model, 'password_maganger')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_maganger')->textInput(['maxlength' => true])->passwordInput() ?>
 
     <?= $form->field($model, 'status_maganger')->dropDownList(
         ['0' => 'Non Aktif', '1' => 'Aktif']

@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'username')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'password_admin')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'password_admin')->textInput(['maxlength' => true])->passwordInput() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
