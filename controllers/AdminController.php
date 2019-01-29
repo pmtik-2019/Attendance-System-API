@@ -8,6 +8,7 @@ use yii\filters\AccessControl;
 use yii\web\Controller;
 use app\models\Divisi;
 use app\models\Maganger;
+use app\models\Admin;
 use app\models\DivisiSearch;
 use app\models\MagangerSearch;
 use app\models\Absensi;
@@ -50,7 +51,10 @@ class AdminController extends BaseController
 
     public function actionIndex()
     {
-        return $this->_render('index');
+        return $this->_render('index', [
+            'adminCount' => Admin::find()->count(),
+            'magangerCount' => Maganger::find()->count(),
+        ]);
     }
 
     public function actionDivisi()

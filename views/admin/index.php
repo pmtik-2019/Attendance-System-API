@@ -11,7 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
         	 <div class="col-lg-6">
 			     <?php echo \insolita\wgadminlte\LteSmallBox::widget([
                        'type' => \insolita\wgadminlte\LteConst::COLOR_ORANGE,
-                       'title' => '5',
+                       'title' => $adminCount,
                        'text' => 'Admin',
                        'icon' => 'fa fa-cloud-download',
                        'footer' => 'Lihat Semuanya ',
@@ -21,7 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-6">
            <?php echo \insolita\wgadminlte\LteSmallBox::widget([
                        'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
-                       'title' => '20',
+                       'title' => $magangerCount,
                        'text' => 'Maganger',
                        'icon' => 'fa fa-cloud-download',
                        'footer' => 'Lihat Semuanya ',
