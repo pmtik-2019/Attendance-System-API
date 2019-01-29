@@ -47,9 +47,7 @@ class Admin extends \yii\db\ActiveRecord
 
     public function beforeSave($insert) {
 
-        if ($insert) {
-            $this->password_admin = Yii::$app->getSecurity()->generatePasswordHash($this->password_admin);
-        }
+        $this->password_maganger = Yii::$app->getSecurity()->generatePasswordHash($this->password_maganger);
     
         return parent::beforeSave($insert);
     }

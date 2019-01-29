@@ -26,7 +26,7 @@ final class Identity implements \yii\web\IdentityInterface
         if (\count($parts) !== 2) {
             throw new InvalidCallException('id should be in form of Type-number');
         }
-        [$type, $number] = $parts;
+        list($type, $number) = $parts;
 
         if (!\in_array($type, self::ALLOWED_TYPES, true)) {
             throw new InvalidCallException('Unsupported identity type');
@@ -98,6 +98,9 @@ final class Identity implements \yii\web\IdentityInterface
         } else {
             $identity->_passwordHash = $model->password_maganger;
         }
+
+        $identity->_type = $type;
+        
         return $identity;
     }
 

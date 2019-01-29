@@ -75,9 +75,7 @@ class Maganger extends \yii\db\ActiveRecord
 
     public function beforeSave($insert) {
 
-        if ($insert) {
-            $this->password_maganger = Yii::$app->getSecurity()->generatePasswordHash($this->password_maganger);
-        }
+        $this->password_maganger = Yii::$app->getSecurity()->generatePasswordHash($this->password_maganger);
     
         return parent::beforeSave($insert);
     }

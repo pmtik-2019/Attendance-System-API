@@ -6,7 +6,7 @@ use Yii;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\controllers\base\BaseController;
-
+use app\models\Identity;
 use app\models\Maganger;
 use app\models\Absensi;
 
@@ -31,8 +31,16 @@ class SiteController extends BaseController
         ];
     }
 
+    public function goDashboard() {
+        return (Yii::$app->user->identity->_type == Identity::TYPE_ADMIN) ? $this->redirect(['admin/index']) : $this->redirect(['user/index']);
+    }
+
     public function actionIndex()
     {
+        if (!Yii::$app->user->isGuest) {
+            return $this->goDashboard();
+        }
+        
         $absensi = new Absensi();
 
         $custom_post_model = Yii::$app->request->post();
@@ -81,15 +89,17 @@ class SiteController extends BaseController
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+            return $this->goDashboard();
         }
 
         $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+
+            return $this->goDashboard();
         }
 
         $model->password = '';
+
         return $this->render('login', [
             'model' => $model,
         ]);
