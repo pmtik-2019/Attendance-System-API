@@ -41,9 +41,36 @@ class SiteController extends BaseController
         if (empty($custom_post_model['Absensi']['laporan_kerja'])) {
             $custom_post_model['Absensi']['laporan_kerja'] = null;
         }
-        
-        if ($absensi->load($custom_post_model) && $absensi->save()) {
-            echo 'has been submitted!'; exit;
+
+        if ($absensi->load($custom_post_model) && $absensi->validate()) {
+            // Check last absence first
+            $postDataAbsensi = (object) $custom_post_model['Absensi'];
+            
+            $getLastAbsensi = Absensi::find()->where([
+                'nim' => $postDataAbsensi->nim,
+            ])->andWhere('date(tanggal_waktu) = DATE(NOW())')->orderBy(['id_absensi' => SORT_DESC])->limit(1)->one();
+            
+            $isSafeToSave = true;
+            // jika pernah absen hari ini
+            if (!is_null($getLastAbsensi)) {
+                // Harus berbeda dengan absen sebelumnya
+                if ($getLastAbsensi->status_kedatangan == $postDataAbsensi->status_kedatangan) {
+                    // tolak! karena misalkan pulang-pulang atau datang-datang
+                    $isSafeToSave = 'Anda tidak bisa melakukan presensi sama seperti sebelumnya!';
+                }
+            } else {
+                // Harus datang dulu
+                if ($postDataAbsensi->status_kedatangan == 2) {
+                    // tolak! karena belum datang masa sudah pulang
+                    $isSafeToSave = 'Anda belum presensi kedatangan!';
+                }
+            }
+
+            if ($isSafeToSave === true && $absensi->save()) {
+                echo 'Ok!'; exit;
+            } else {
+                self::setError($isSafeToSave);
+            }
         }
 
         return $this->render('index', [

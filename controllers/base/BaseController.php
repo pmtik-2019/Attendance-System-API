@@ -2,6 +2,7 @@
 
 namespace app\controllers\base;
 
+use Yii;
 use yii\web\Controller;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
@@ -63,6 +64,18 @@ class BaseController extends Controller {
     protected function addSidebarItem($url, $view, $label, $icon)
     {
         array_push($this->sidebar_items, ['url' => Url::to($url), 'view' => $view, 'label' => $label, 'icon' => $icon]);
+    }
+
+    protected static function setSuccess($messages, $id = 'c_success') {
+        self::setFlash($messages, $id);
+    }
+
+    protected static function setError($messages, $id = 'c_error') {
+        self::setFlash($messages, $id);
+    }
+
+    protected static function setFlash($messages, $id) {
+        return Yii::$app->session->setFlash($id, $messages); 
     }
 
     protected function _behaviors()

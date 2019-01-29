@@ -26,8 +26,25 @@ use yii\widgets\ActiveForm;
                     <?php $form = ActiveForm::begin(['options' => ['class' => 'form-horizontal form-absensi']]); ?>
 
                     <div class="panel-body">
+                    <?php if (Yii::$app->session->hasFlash('c_success')): ?>
+                        <div class="alert alert-success alert-dismissable">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <h4><i class="icon fa fa-check"></i>Tersimpan!</h4>
+                            <?= Yii::$app->session->getFlash('c_success') ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <?php if (Yii::$app->session->hasFlash('c_error')): ?>
+                        <div class="alert alert-danger alert-dismissable">
+                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
+                            <h4><i class="icon fa fa-check"></i>Kesalahan!</h4>
+                            <?= Yii::$app->session->getFlash('c_error') ?>
+                        </div>
+                    <?php endif; ?>
                         <p>Masukkan data anda pada kolom yang telah disediakan, untuk bagian tanggal dan waktu tidak dapat diubah secara manual oleh anda. Sistem akan menggunakan waktu <i>server</i>.</p>
-                            <div class="form-group">
+                            
+                        
+<div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <label class="radio-inline">
                                         <input type="radio" name="Absensi[status_kedatangan]" id="tipe_berangkat" value="1" checked> Berangkat
