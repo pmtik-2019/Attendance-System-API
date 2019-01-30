@@ -15,7 +15,7 @@ use app\models\Maganger;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status_kedatangan')->textInput() ?>
+    <?= $form->field($model, 'status_kedatangan')->radioList([1 => 'Berangkat', 2 => 'Pulang'])->label('Status Kedatangan') ?>
 
     <?= $form->field($model, 'tanggal_waktu')->textInput() ?>
 

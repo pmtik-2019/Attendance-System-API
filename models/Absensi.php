@@ -48,9 +48,9 @@ class Absensi extends \yii\db\ActiveRecord
         return [
             'id_absensi' => 'Id Absensi',
             'status_kedatangan' => 'Status Kedatangan',
-            'tanggal_waktu' => 'Tanggal Waktu',
+            'tanggal_waktu' => 'Tanggal Waktu  [Y-m-d H:i:s] ' ,
             'laporan_kerja' => 'Laporan Kerja',
-            'nim' => 'Nim',
+            'nim' => 'NIM',
         ];
     }
 

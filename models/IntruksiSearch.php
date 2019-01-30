@@ -18,7 +18,7 @@ class IntruksiSearch extends Intruksi
     {
         return [
             [['id_instruksi'], 'integer'],
-            [['judul', 'deskripsi', 'gambar'], 'safe'],
+            [['judul', 'deskripsi'], 'safe'],
         ];
     }
 
@@ -62,8 +62,7 @@ class IntruksiSearch extends Intruksi
         ]);
 
         $query->andFilterWhere(['like', 'judul', $this->judul])
-            ->andFilterWhere(['like', 'deskripsi', $this->deskripsi])
-            ->andFilterWhere(['like', 'gambar', $this->gambar]);
+            ->andFilterWhere(['like', 'deskripsi', $this->deskripsi]);
 
         return $dataProvider;
     }

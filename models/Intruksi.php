@@ -10,7 +10,6 @@ use Yii;
  * @property int $id_instruksi
  * @property string $judul
  * @property string $deskripsi
- * @property string $gambar
  */
 class Intruksi extends \yii\db\ActiveRecord
 {
@@ -30,7 +29,6 @@ class Intruksi extends \yii\db\ActiveRecord
         return [
             [['judul', 'deskripsi', 'gambar'], 'required'],
             [['judul', 'deskripsi'], 'string'],
-            [['gambar'], 'string', 'max' => 100],
         ];
     }
 
@@ -43,7 +41,6 @@ class Intruksi extends \yii\db\ActiveRecord
             'id_instruksi' => 'Id Instruksi',
             'judul' => 'Judul',
             'deskripsi' => 'Deskripsi',
-            'gambar' => 'Gambar',
         ];
     }
 }
