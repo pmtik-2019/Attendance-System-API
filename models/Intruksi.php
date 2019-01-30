@@ -27,7 +27,7 @@ class Intruksi extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['judul', 'deskripsi', 'gambar'], 'required'],
+            [['judul', 'deskripsi'], 'required'],
             [['judul', 'deskripsi'], 'string'],
         ];
     }

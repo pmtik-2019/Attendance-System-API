@@ -24,7 +24,7 @@ use app\models\Maganger;
     <?= $form->field($model, 'nim')->dropDownList(ArrayHelper::map(Maganger::find()->all(), 'nim','nama_maganger' , 'kode_divisi' , 'password_maganger' , 'status_maganger'), array('promp' => 'Pilih Maganger')) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<span class="glyphicon glyphicon-floppy-disk"></span> Save', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

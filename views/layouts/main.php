@@ -43,10 +43,11 @@ $this->title = 'Sistem Informasi Presensi Magang UPT. TIK UNS';
     ]);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
+        'encodeLabels' => false,
         'items' => [
-            ['label' => 'Presensi', 'url' => ['/site/index']],
+            ['label' => 'Presensi <i class="fa fa-list-alt"></i>', 'url' => ['/site/index'] ],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login  <i class="fa fa-user"></i>', 'url' => ['/site/login']]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')

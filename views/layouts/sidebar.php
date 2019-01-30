@@ -63,7 +63,7 @@
                     </ul>
                   </li>',
                     Yii::$app->user->isGuest ? (
-                        ['label' => 'Login', 'url' => ['/site/login']]
+                        ['label' => 'Login', 'url' => ['/site/login'], 'icon' => 'fa fa-user']
                     ) : (
                         '<li>'
                         . Html::beginForm(['/site/logout'], 'post')
