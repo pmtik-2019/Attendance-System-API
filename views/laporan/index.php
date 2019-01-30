@@ -13,14 +13,31 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="absensi-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
+    <p>Masukkan range tanggal presensi yang akan diambil laporannya.</p>
+    <form action="" class="form-inline">
+        <div class="form-group">
+        <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="date" class="form-control" id="date">
+                                    </div>
+        </div>
+        <span>:</span>
+        <div class="form-group">
+        <div class="input-group">
+                                        <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+                                        <input type="date" class="form-control" id="date">
+                                    </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Go</button>
+        </div>
+    </form>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
     <!-- <p>
         <?= Html::a('Tambah Data Laporan', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
-
-    <?= GridView::widget([
+    <!-- <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
@@ -48,6 +65,6 @@ $this->params['breadcrumbs'][] = $this->title;
             //     ]
             // ],
         ],
-    ]); ?>
+    ]); ?> -->
     <?php Pjax::end(); ?>
 </div>

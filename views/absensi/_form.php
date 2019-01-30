@@ -15,7 +15,18 @@ use app\models\Maganger;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status_kedatangan')->radioList([1 => 'Berangkat', 2 => 'Pulang'])->label('Status Kedatangan') ?>
+    <?= $form->field($model, 'status_kedatangan')->radioList([1 => 'Berangkat', 2 => 'Pulang'], [
+                                'item' => function($index, $label, $name, $checked, $value) {
+
+                                    $return = '<label class="radio-inline">';
+                                    $return .= '<input type="radio" name="' . $name . '" value="' . $value . '" tabindex="3" '.($checked ? 'checked' : '').'>';
+                                    $return .= '<i></i>';
+                                    $return .= '<span>' . ucwords($label) . '</span>';
+                                    $return .= '</label>';
+
+                                    return $return;
+                                }
+                            ])->label('Status Kedatangan') ?>
 
     <?= $form->field($model, 'tanggal_waktu')->textInput() ?>
 
