@@ -51,7 +51,7 @@ class IntruksiController extends BaseController
         $searchModel = new IntruksiSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-        return $this->render('index', [
+        return $this->_render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
@@ -65,7 +65,7 @@ class IntruksiController extends BaseController
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->_render('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -83,7 +83,7 @@ class IntruksiController extends BaseController
             return $this->redirect(['view', 'id' => $model->id_instruksi]);
         }
 
-        return $this->render('create', [
+        return $this->_render('create', [
             'model' => $model,
         ]);
     }
@@ -103,7 +103,7 @@ class IntruksiController extends BaseController
             return $this->redirect(['view', 'id' => $model->id_instruksi]);
         }
 
-        return $this->render('update', [
+        return $this->_render('update', [
             'model' => $model,
         ]);
     }

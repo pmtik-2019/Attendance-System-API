@@ -26,3 +26,7 @@ body {
 .header-notification {
     font-weight: bold;
 }
+
+a > i.fa {
+    margin-left: 5px;
+}

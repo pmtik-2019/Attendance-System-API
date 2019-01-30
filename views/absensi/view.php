@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model app\models\Absensi */
 
-$this->title = $model->id_absensi;
+$this->title = 'Lihat Absensi ' . $model->id_absensi;
 $this->params['breadcrumbs'][] = ['label' => 'Presensi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);

@@ -31,12 +31,16 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
         <div class="row">
             <div class="col-lg-8">
-                <h3>Instruksi Menggunakan Aplikasi Sistem Informasi Presensi Maganger</h3>
-                <br/>
-                1. Gunakan NIM Anda untuk LOGIN <br/>
-                2. Pilih Button "Masuk" atau "Keluar" <br/>
-                3. Melihat jumlah admin dan maganger di menu "Home" <br/>
-                4. Menambahkan divisi atau melihat data divisi melalui menu "Divisi" <br/>
+                <?php
+                if (empty($intruksiDataset)) {
+                    echo '<p>Tidak ada intruksi ditemukan!</p>';
+                } else {
+                    foreach ($intruksiDataset as $intruksi) {
+                        echo '<h3>'.$intruksi->judul.'</h3><br />';
+                        echo str_replace("\n", "<br />", $intruksi->deskripsi);
+                    }
+                }
+                ?>
             </div>
         </div>
 
