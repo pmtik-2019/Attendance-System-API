@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use yii\filters\AccessControl;
+use app\models\Intruksi;
 use app\controllers\base\BaseController;
 
 use app\models\Identity;
@@ -30,7 +31,9 @@ class UserController extends BaseController
 
     public function actionIndex()
     {
-        return $this->_render('index');
+        return $this->_render('index', [
+            'intruksiDataset' => Intruksi::find()->orderBy('id_instruksi', SORT_DESC)->all(),
+        ]);
     }
 
     public function actionLaporan()
