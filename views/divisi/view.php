@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model app\models\Divisi */
 
 $this->title = 'Informasi divisi: ' . $model->kode_divisi;
-$this->params['breadcrumbs'][] = ['label' => 'Divisis', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Divisi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
@@ -16,11 +16,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('<span class="fa fa-edit"></span> Update', ['update', 'id' => $model->kode_divisi], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('<span class="fa fa-trash"></span> Delete', ['divisi', 'id' => $model->kode_divisi], [
+        <?= Html::a('<span class="fa fa-edit"></span> Edit', ['update', 'id' => $model->kode_divisi], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('<span class="fa fa-trash"></span> Hapus', ['divisi', 'id' => $model->kode_divisi], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Ada Yakin Akan Menghapus?',
                 'method' => 'post',
             ],
         ]) ?>
