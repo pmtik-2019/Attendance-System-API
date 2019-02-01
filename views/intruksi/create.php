@@ -5,8 +5,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model app\models\Intruksi */
 
-$this->title = 'Create Intruksi';
-$this->params['breadcrumbs'][] = ['label' => 'Intruksis', 'url' => ['index']];
+$this->title = 'Tambah Data Instruksi';
+$this->params['breadcrumbs'][] = ['label' => 'Instruksi', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="intruksi-create">
