@@ -49,11 +49,13 @@ class LaporanController extends BaseController
     public function actionIndex()
     {
         $searchModel = new AbsensiSearch();
+        $model = new Absensi();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->_render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 

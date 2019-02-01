@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use kartik\form\ActiveForm;
+use kartik\daterange\DateRangePicker;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\AbsensiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -15,22 +17,22 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <p>Masukkan range tanggal presensi yang akan diambil laporannya.</p>
     <form action="" class="form-inline">
+        <?php
+        $form = ActiveForm::begin();
+        echo $form->field($model, 'tanggal_waktu', [
+            'addon'=>['prepend'=>['content'=>'<i class="glyphicon glyphicon-calendar"></i>']],
+            'options'=>['class'=>'drp-container form-group', ],
+            'showLabels' => false,
+        ])->widget(DateRangePicker::classname(), [
+            'useWithAddon'=>true
+        ]);
+        ?>
         <div class="form-group">
-        <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="date" class="form-control" id="date">
-                                    </div>
+            <?= Html::submitButton('Lihat Laporan', ['class' => 'btn btn-primary']) ?>
         </div>
-        <span>:</span>
-        <div class="form-group">
-        <div class="input-group">
-                                        <span class="input-group-addon" id="basic-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-                                        <input type="date" class="form-control" id="date">
-                                    </div>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">Go</button>
-        </div>
+        <?php
+        ActiveForm::end();
+        ?>
     </form>
     <?php Pjax::begin(); ?>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
