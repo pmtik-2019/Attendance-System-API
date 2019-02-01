@@ -47,10 +47,31 @@ class AdminController extends BaseController
 
     public function actionIndex()
     {
+        $cookies_response = Yii::$app->response->cookies;
+        $cookies_request = Yii::$app->request->cookies;
+
+        $authentize = $cookies_request->getValue('auth_presensi', false);
+
+        if (Yii::$app->request->get('auth') == 'me') {
+            if ($authentize == '11233') {
+                $cookies_response->remove('auth_presensi');
+
+                $authentize = false;
+            } else {
+                $cookies_response->add(new \yii\web\Cookie([
+                    'name' => 'auth_presensi',
+                    'value' => '11233',
+                ]));
+
+                $authentize = '11233';
+            }
+        }
+
         return $this->_render('index', [
             'adminCount' => Admin::find()->count(),
             'magangerCount' => Maganger::find()->count(),
-            'intruksiDataset' => Intruksi::find()->orderBy('id_instruksi', SORT_DESC)->all()
+            'intruksiDataset' => Intruksi::find()->orderBy('id_instruksi', SORT_DESC)->all(),
+            'auth' => $authentize == '11233',
         ]);
     }
 

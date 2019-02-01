@@ -30,6 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
            </div>
         </div>
         <div class="row">
+            <div class="col-lg-12">
+                <?php if ($auth): ?>
+                <p>Dengan menekan tombol di bawah, komputer ini akan dihapus dari pembuatan presensi!</p>
+                <a href="?auth=me" class="btn btn-danger">Hapus Authentikasi!</a>
+                <?php else: ?>
+                <p>Dengan menekan tombol di bawah, komputer ini akan bisa untuk dibuat presensi!</p>
+                <a href="?auth=me" class="btn btn-primary">Authentikasi Me!</a>
+                <?php endif; ?>
+                <br>
+                <br>
+            </div>
             <div class="col-lg-8">
                 <?php
                 if (empty($intruksiDataset)) {

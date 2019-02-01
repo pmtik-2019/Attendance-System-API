@@ -18,6 +18,7 @@ use yii\widgets\ActiveForm;
 
     <div class="body-content">
 
+        <?php if ($auth): ?>
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="panel panel-default">
@@ -96,6 +97,12 @@ use yii\widgets\ActiveForm;
                 </div>
             </div>
         </div>
-
+        <?php else: ?>
+            <div class="row">
+                <div class="col-lg-6 col-lg-offset-3">
+                    <h3 class="text-center">Maaf, anda tidak mempunyai akses!</h3>
+                </div>
+            </div>
+        <?php endif; ?>
     </div>
 </div>
