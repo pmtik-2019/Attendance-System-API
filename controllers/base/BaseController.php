@@ -7,14 +7,15 @@ use yii\web\Controller;
 use yii\helpers\Url;
 use yii\filters\AccessControl;
 
-class BaseController extends Controller {
-
+class BaseController extends Controller
+{
     public $sidebar_items;
     public $sidebar = 'user';
     
     public $active_view = null;
 
-    public function __construct($id, $module, $config = []){
+    public function __construct($id, $module, $config = [])
+    {
         parent::__construct($id, $module, $config);
 
         $this->sidebar_items = array();
@@ -64,19 +65,27 @@ class BaseController extends Controller {
 
     protected function addSidebarItem($url, $view, $label, $icon)
     {
-        array_push($this->sidebar_items, ['url' => Url::to($url), 'view' => $view, 'label' => $label, 'icon' => $icon]);
+        array_push($this->sidebar_items, [
+            'url' => Url::to($url),
+            'view' => $view,
+            'label' => $label,
+            'icon' => $icon
+        ]);
     }
 
-    protected static function setSuccess($messages, $id = 'c_success') {
+    protected static function setSuccess($messages, $id = 'c_success')
+    {
         self::setFlash($messages, $id);
     }
 
-    protected static function setError($messages, $id = 'c_error') {
+    protected static function setError($messages, $id = 'c_error')
+    {
         self::setFlash($messages, $id);
     }
 
-    protected static function setFlash($messages, $id) {
-        return Yii::$app->session->setFlash($id, $messages); 
+    protected static function setFlash($messages, $id)
+    {
+        return Yii::$app->session->setFlash($id, $messages);
     }
 
     protected function _behaviors()
@@ -108,10 +117,11 @@ class BaseController extends Controller {
         ]);
     }
 
-    protected function _render($view, $context = []) {
+    protected function _render($view, $context = [])
+    {
         $activev = $this->active_view;
 
-        $this->sidebar_items = array_map(function ($item) use($view, $activev) {
+        $this->sidebar_items = array_map(function ($item) use ($view, $activev) {
             if (is_null($activev)) {
                 $item['active'] = ($item['view'] == explode('/', $view)[0]);
             } else {

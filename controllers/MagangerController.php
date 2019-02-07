@@ -3,17 +3,13 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Maganger;
-use app\models\MagangerSearch;
-use yii\web\Controller;
+use app\controllers\base\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Identity;
+use app\models\Maganger;
+use app\models\MagangerSearch;
 
-use app\controllers\base\BaseController;
-/**
- * ManagerController implements the CRUD actions for Admin model.
- */
 class MagangerController extends BaseController
 {
     public $layout = 'sidebar';
@@ -25,7 +21,8 @@ class MagangerController extends BaseController
     }
 
     // Define the authentication check progress here
-    public static function authenticate($rule, $action) {
+    public static function authenticate($rule, $action)
+    {
         return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
     }
 

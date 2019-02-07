@@ -3,11 +3,11 @@
 namespace app\controllers;
 
 use Yii;
-use yii\filters\VerbFilter;
-use app\models\LoginForm;
 use app\controllers\base\BaseController;
+use yii\filters\VerbFilter;
 use app\models\Identity;
 use app\models\Maganger;
+use app\models\LoginForm;
 use app\models\Absensi;
 
 class SiteController extends BaseController
@@ -17,7 +17,8 @@ class SiteController extends BaseController
         parent::__construct($id, $module, $config);
     }
 
-    public function behavior() {
+    public function behavior()
+    {
         return [
             'access' => [
                 'only' => ['logout']
@@ -31,7 +32,8 @@ class SiteController extends BaseController
         ];
     }
 
-    public function goDashboard() {
+    public function goDashboard()
+    {
         return (Yii::$app->user->identity->_type == Identity::TYPE_ADMIN) ? $this->redirect(['admin/index']) : $this->redirect(['user/index']);
     }
 
@@ -80,7 +82,7 @@ class SiteController extends BaseController
                 }
 
                 if ($isSafeToSave === true && $absensi->save()) {
-                    echo 'Ok!'; exit;
+                    self::setSuccess('Presensi berhasil ditambahkan!');
                 } else {
                     self::setError($isSafeToSave);
                 }
@@ -100,8 +102,8 @@ class SiteController extends BaseController
         }
 
         $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
 
+        if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goDashboard();
         }
 

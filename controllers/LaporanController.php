@@ -3,15 +3,13 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Absensi;
-
-use app\models\AbsensiSearch;
-use yii\web\Controller;
+use app\controllers\base\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\Absensi;
+use app\models\AbsensiSearch;
 use app\models\Identity;
 
-use app\controllers\base\BaseController;
 /**
  * ManagerController implements the CRUD actions for Admin model.
  */
@@ -26,7 +24,8 @@ class LaporanController extends BaseController
     }
 
     // Define the authentication check progress here
-    public static function authenticate($rule, $action) {
+    public static function authenticate($rule, $action)
+    {
         return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
     }
 

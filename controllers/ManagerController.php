@@ -3,17 +3,13 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Admin;
-use app\models\AdminSearch;
-use yii\web\Controller;
+use app\controllers\base\BaseController;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Identity;
+use app\models\Admin;
+use app\models\AdminSearch;
 
-use app\controllers\base\BaseController;
-/**
- * ManagerController implements the CRUD actions for Admin model.
- */
 class ManagerController extends BaseController
 {
     public $layout = 'sidebar';
@@ -25,7 +21,8 @@ class ManagerController extends BaseController
     }
 
     // Define the authentication check progress here
-    public static function authenticate($rule, $action) {
+    public static function authenticate($rule, $action)
+    {
         return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
     }
 
