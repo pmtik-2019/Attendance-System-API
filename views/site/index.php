@@ -2,11 +2,12 @@
 
 /* @var $this yii\web\View */
 use yii\widgets\ActiveForm;
+
 ?>
 <script>
     var availableTags = [<?php array_map(function ($obj) {
-        echo "{value: '{$obj->nim}', label: '{$obj->nim} - {$obj->nama_maganger}'}, ";
-    }, $model); ?>];
+    echo "{value: '{$obj->nim}', label: '{$obj->nim} - {$obj->nama_maganger}'}, ";
+}, $model); ?>];
 </script>
 <div class="site-index">
         <?php if ($auth): ?>
@@ -85,8 +86,6 @@ use yii\widgets\ActiveForm;
                                     <p class="help-block">Terkhusus untuk pulang, silahkan masukkan laporan kerja anda pada kolom yang telah disediakan.</p>
                                 </div>
                             </div>
-                            
-                        
                     </div>
                     <div class="panel-footer text-right">
                         <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-bookmark"></i> Present!</button>

@@ -6,7 +6,6 @@ use Yii;
 use yii\base\Model;
 use app\models\Identity;
 
-
 /**
  * LoginForm is the model behind the login form.
  *
@@ -34,7 +33,7 @@ class LoginForm extends Model
             [
                 'login_as',
                 'integer',
-                'integerOnly' => true, 
+                'integerOnly' => true,
                 'min' => 0, 'max' => 1
             ],
             // rememberMe must be a boolean value
