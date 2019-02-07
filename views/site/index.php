@@ -9,16 +9,14 @@ use yii\widgets\ActiveForm;
     }, $model); ?>];
 </script>
 <div class="site-index">
-
-    <div class="jumbotron">
-        <h1>Selamat Datang!</h1>
-
-        <p class="lead">Silahkan melakukan presensi dengan mengisi form dibawah ini.</p>
-    </div>
-
-    <div class="body-content">
-
         <?php if ($auth): ?>
+        <div class="jumbotron">
+            <h1>Selamat Datang!</h1>
+
+            <p class="lead">Silahkan melakukan presensi dengan mengisi form dibawah ini.</p>
+        </div>
+
+        <div class="body-content">
         <div class="row">
             <div class="col-lg-6 col-lg-offset-3">
                 <div class="panel panel-default">
@@ -98,9 +96,10 @@ use yii\widgets\ActiveForm;
             </div>
         </div>
         <?php else: ?>
+            <div class="body-content">
             <div class="row">
-                <div class="col-lg-6 col-lg-offset-3">
-                    <h3 class="text-center">Maaf, anda tidak mempunyai akses!</h3>
+                <div class="col-lg-12 text-center">
+                    <img width="800px;" src="https://cdn.dribbble.com/users/34790/screenshots/1638786/uh_oh.png" alt="Sorry">
                 </div>
             </div>
         <?php endif; ?>
