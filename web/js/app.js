@@ -16,7 +16,7 @@ $(document).ready(function() {
       }
     });
 
-    _date.val(__date.getFullYear() + '-' + ('0' + (__date.getMonth()+1)).slice(-2) + '-' + __date.getDate());
+    _date.val(__date.getFullYear() + '-' + ('0' + (__date.getMonth()+1)).slice(-2) + '-' + ('0' + (__date.getDate()+1)).slice(-2));
     _time.val(__date.toLocaleTimeString());
 
     var intv = setInterval(function() {
