@@ -45,7 +45,7 @@ use yii\widgets\ActiveForm;
                         <p>Masukkan data anda pada kolom yang telah disediakan, untuk bagian tanggal dan waktu tidak dapat diubah secara manual oleh anda. Sistem akan menggunakan waktu <i>server</i>.</p>
                             
                         
-<div class="form-group">
+                            <div class="form-group">
                                 <div class="col-lg-10 col-lg-offset-2">
                                     <label class="radio-inline">
                                         <input type="radio" name="Absensi[status_kedatangan]" id="tipe_berangkat" value="1" checked> Berangkat
