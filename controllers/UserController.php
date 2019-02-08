@@ -6,6 +6,8 @@ use Yii;
 use app\controllers\base\BaseController;
 use yii\filters\AccessControl;
 use app\models\Intruksi;
+use app\models\Absensi;
+use app\models\AbsensiSearch;
 use app\models\Identity;
 
 class UserController extends BaseController
@@ -31,6 +33,7 @@ class UserController extends BaseController
 
     public function actionIndex()
     {
+
         return $this->_render('index', [
             'intruksiDataset' => Intruksi::find()->orderBy('id_instruksi', SORT_DESC)->all(),
         ]);
@@ -38,6 +41,14 @@ class UserController extends BaseController
 
     public function actionLaporan()
     {
-        return $this->_render('laporan');
+        $searchModel = new AbsensiSearch();
+        $model = new Absensi();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        return $this->_render('laporan', [
+          'searchModel' => $searchModel,
+          'dataProvider' => $dataProvider,
+          'model' => $model,  
+        ]);
     }
 }

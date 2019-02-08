@@ -33,10 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="col-lg-12">
                 <?php if ($auth): ?>
                 <p>Dengan menekan tombol di bawah, komputer ini akan dihapus dari pembuatan presensi!</p>
-                <a href="?auth=me" class="btn btn-danger">Hapus Authentikasi!</a>
+                <a href="?auth=me" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span> Hapus Authentikasi!</a>
                 <?php else: ?>
                 <p>Dengan menekan tombol di bawah, komputer ini akan bisa untuk dibuat presensi!</p>
-                <a href="?auth=me" class="btn btn-primary">Authentikasi Me!</a>
+                <a href="?auth=me" class="btn btn-primary"><span class="glyphicon glyphicon-ok"></span> Authentikasi Me!</a>
                 <?php endif; ?>
                 <br>
                 <br>
