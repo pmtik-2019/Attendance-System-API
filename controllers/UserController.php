@@ -2,13 +2,11 @@
 
 namespace app\controllers;
 
-use Yii;
 use app\controllers\base\BaseController;
-use yii\filters\AccessControl;
-use app\models\Intruksi;
 use app\models\Absensi;
-use app\models\AbsensiSearch;
 use app\models\Identity;
+use app\models\Intruksi;
+use Yii;
 
 class UserController extends BaseController
 {
@@ -19,7 +17,7 @@ class UserController extends BaseController
     {
         parent::__construct($id, $module, $config);
     }
-    
+
     // Define the authentication check progress here
     public static function authenticate($rule, $action)
     {
@@ -33,7 +31,6 @@ class UserController extends BaseController
 
     public function actionIndex()
     {
-
         return $this->_render('index', [
             'intruksiDataset' => Intruksi::find()->orderBy('id_instruksi', SORT_DESC)->all(),
         ]);
@@ -41,14 +38,23 @@ class UserController extends BaseController
 
     public function actionLaporan()
     {
-        $searchModel = new AbsensiSearch();
+        $connection = Yii::$app->getDb();
         $model = new Absensi();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
         
+        $dateRange = Yii::$app->request->get('Absensi');
+
+        if (!empty($dateRange['tanggal_waktu'])) {
+
+            list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
+
+            $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE nim = :nim AND tanggal_waktu >= :date_start AND tanggal_waktu <= :date_end", [':nim' => Yii::$app->user->identity->username, ':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
+            if ($dataProvider == null) $dataProvider = false;
+
+        }
+
         return $this->_render('laporan', [
-          'searchModel' => $searchModel,
-          'dataProvider' => $dataProvider,
-          'model' => $model,  
+            'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
     }
 }
