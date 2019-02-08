@@ -37,10 +37,68 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <p>
         <?= Html::a('Tambah Data Laporan', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
+    <br/>
     <?php
     if ($dataProvider !== null) {
-        var_dump($dataProvider);
-    }
+    if ($dataProvider == false):
+    ?>
+        <p>Data Tidak Ditemukan</p>
+    <?php
+    else:
+    ?>    
+    <div class="user-laporan">
+        <div class="site-index">
+        <div class="body-content">
+            <div class="row">
+                <div class="col-lg-6">
+                    <?php echo \insolita\wgadminlte\LteSmallBox::widget([
+                        'type' => \insolita\wgadminlte\LteConst::COLOR_ORANGE,
+                        'title' => $absensiCount,
+                        'text' => 'Berangkat',
+                        'icon' => 'glyphicon glyphicon-briefcase',
+                        'link' => '#'
+                    ]);?>
+                </div>
+                <div class="col-lg-6">
+            <?php echo \insolita\wgadminlte\LteSmallBox::widget([
+                        'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
+                        'title' => $absensiCount,
+                        'text' => 'Pulang',
+                        'icon' => 'glyphicon glyphicon-road',
+                        'link' => '#'
+                    ]);?>
+            </div>
+            </div>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped table-responsive">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIM</th>
+                  <th>Tanggal / Waktu</th>
+                  <th>Laporan Kerja</th>
+                  <th>Status Kedatangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($dataProvider as $tb_1): ?>
+                    <tr>
+                    <th><?=$tb_1['id_absensi']?></th>
+                    <th><?=$tb_1['nim']?></th>
+                    <th><?=$tb_1['tanggal_waktu']?></th>
+                    <th><?=$tb_1['laporan_kerja'] == NULL ?  '-' : $tb_1['laporan_kerja']?></th>
+                    <th><?=$tb_1['status_kedatangan'] == 1 ?'Berangkat' : 'Pulang'?></th>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                </tfoot>
+              </table>
+            </div>
+    </div>
+    <?php
+        endif;    
+}
     ?>
     <?php Pjax::end(); ?>
 </div>

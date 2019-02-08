@@ -42,19 +42,21 @@ class UserController extends BaseController
         $model = new Absensi();
         
         $dateRange = Yii::$app->request->get('Absensi');
+        $dataProvider = NULL;
 
         if (!empty($dateRange['tanggal_waktu'])) {
 
             list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
 
-            $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE nim = :nim AND tanggal_waktu >= :date_start AND tanggal_waktu <= :date_end", [':nim' => Yii::$app->user->identity->username, ':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
+            $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE nim = :nim AND date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':nim' => Yii::$app->user->identity->username, ':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
             if ($dataProvider == null) $dataProvider = false;
 
         }
 
         return $this->_render('laporan', [
             'dataProvider' => $dataProvider,
-            'model' => $model,
+            'model' => $model,            
+            'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
         ]);
     }
 }
