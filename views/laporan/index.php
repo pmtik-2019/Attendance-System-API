@@ -33,8 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php
         ActiveForm::end();
         ?>
+        
     </form>
     <?php Pjax::begin(); ?>
+    
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <!-- <p>
         <?= Html::a('Tambah Data Laporan', ['create'], ['class' => 'btn btn-success']) ?>
@@ -50,22 +52,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'tanggal_waktu',
             'laporan_kerja:ntext',
             'nim',
-
-            // [
-            //     'class' => 'yii\grid\ActionColumn',
-            //     'template' => '{view} {update} {delete}',
-            //     'buttons' => [
-            //         'view' => function($url, $model) {
-            //         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', ['view', 'id' => $model['id_absensi']], ['title' => 'View', 'id' => 'modal-btn-view']);
-            //         },
-            //         'update' => function($id, $model) {
-            //             return Html::a('<span class="glyphicon glyphicon-pencil"></span>', ['update', 'id' => $model['id_absensi']], ['title' => 'Update', 'id' => 'modal-btn-view']);
-            //         },
-            //         'delete' => function($url, $model) {
-            //             return Html::a('<span class="glyphicon glyphicon-trash"></span>', ['delete', 'id' => $model['id_absensi']], ['title' => 'Delete', 'class' => '', 'data' => ['confirm' => 'Are you absolutely sure ? You will lose all the information about this user with this action.', 'method' => 'post', 'data-pjax' => false],]);
-            //         }
-            //     ]
-            // ],
         ],
     ]); ?> -->
     <?php Pjax::end(); ?>

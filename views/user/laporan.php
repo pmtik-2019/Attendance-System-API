@@ -60,14 +60,14 @@ $this->params['breadcrumbs'][] = $this->title;
                     ]);?>
                 </div>
                 <div class="col-lg-6">
-            <?php echo \insolita\wgadminlte\LteSmallBox::widget([
-                        'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
-                        'title' => $absensiCount,
-                        'text' => 'Pulang',
-                        'icon' => 'glyphicon glyphicon-road',
-                        'link' => '#'
-                    ]);?>
-            </div>
+                    <?php echo \insolita\wgadminlte\LteSmallBox::widget([
+                                'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
+                                'title' => $absensiCount,
+                                'text' => 'Pulang',
+                                'icon' => 'glyphicon glyphicon-road',
+                                'link' => '#'
+                            ]);?>
+                </div>
             </div>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped table-responsive">

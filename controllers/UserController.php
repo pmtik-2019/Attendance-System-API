@@ -6,6 +6,7 @@ use app\controllers\base\BaseController;
 use app\models\Absensi;
 use app\models\Identity;
 use app\models\Intruksi;
+use kartik\mpdf\Pdf;
 use Yii;
 
 class UserController extends BaseController
@@ -58,5 +59,25 @@ class UserController extends BaseController
             'model' => $model,            
             'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
         ]);
+    }
+
+    public function actionPdfreport(){
+        $content=$this->renderPartial('report');
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE, 
+            'format' => Pdf::FORMAT_A4, 
+            'orientation' => Pdf::ORIENT_PORTRAIT, 
+            'destination' => Pdf::DEST_BROWSER, 
+            'content' => $content, 
+            'cssFile' =>'@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            'cssInline' => 'kv-heading-1{font-size:18px}', 
+            'options' => ['title' =>'Laporan Presensi Maganger', 
+            'methods' => [
+                'SetHeader' =>['Laporan Presensi Maganger'], 
+                'SetFooter' =>['{PAGENO}'],
+            ]
+        ]]);
+        return $pdf->render(); 
     }
 }
