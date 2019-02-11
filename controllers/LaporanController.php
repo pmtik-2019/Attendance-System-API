@@ -47,14 +47,25 @@ class LaporanController extends BaseController
      */
     public function actionIndex()
     {
-        $searchModel = new AbsensiSearch();
+        $connection = Yii::$app->getDb();
         $model = new Absensi();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        
+        $dateRange = Yii::$app->request->get('Absensi');
+        $dataProvider = NULL;
+
+        if (!empty($dateRange['tanggal_waktu'])) {
+
+            list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
+
+            $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
+            if ($dataProvider == null) $dataProvider = false;
+
+        }
 
         return $this->_render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'model' => $model,
+            'model' => $model,            
+            'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
         ]);
     }
 

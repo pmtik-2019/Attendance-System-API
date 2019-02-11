@@ -41,18 +41,45 @@ $this->params['breadcrumbs'][] = $this->title;
     <!-- <p>
         <?= Html::a('Tambah Data Laporan', ['create'], ['class' => 'btn btn-success']) ?>
     </p> -->
-    <!-- <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'id_absensi',
-            'status_kedatangan',
-            'tanggal_waktu',
-            'laporan_kerja:ntext',
-            'nim',
-        ],
-    ]); ?> -->
+    <br/>
+    <?php 
+        if ($dataProvider !== null){
+        if ($dataProvider == false):
+    ?>
+        <p> Data Tidak Ditemukan</p>
+    <?php
+    else: 
+    ?>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped table-responsive">
+                <thead>
+                <tr>
+                  <th>No</th>
+                  <th>NIM</th>
+                  <th>Tanggal / Waktu</th>
+                  <th>Laporan Kerja</th>
+                  <th>Status Kedatangan</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach($dataProvider as $tb_1): ?>
+                    <tr>
+                    <th><?=$tb_1['id_absensi']?></th>
+                    <th><?=$tb_1['nim']?></th>
+                    <th><?=$tb_1['tanggal_waktu']?></th>
+                    <th><?=$tb_1['laporan_kerja'] == NULL ?  '-' : $tb_1['laporan_kerja']?></th>
+                    <th><?=$tb_1['status_kedatangan'] == 1 ?'Berangkat' : 'Pulang'?></th>
+                    </tr>
+                <?php endforeach; ?>
+                </tbody>
+                <tfoot>
+                </tfoot>
+              </table>
+            </div>
+    </div>
+    <?php
+        endif;    
+}
+    ?>
     <?php Pjax::end(); ?>
 </div>
