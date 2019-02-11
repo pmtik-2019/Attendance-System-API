@@ -30,6 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="form-group">
             <?= Html::submitButton('Lihat Laporan', ['class' => 'btn btn-primary']) ?>
         </div>
+        
         <?php
         ActiveForm::end();
         ?>
@@ -50,6 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php
     else: 
     ?>
+    <?= Html::a('<span class="glyphicon glyphicon-download"></span> Download Laporan', ['report'], ['class' => 'btn btn-success']) ?>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>

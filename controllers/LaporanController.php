@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use app\models\Absensi;
 use app\models\AbsensiSearch;
 use app\models\Identity;
+use kartik\mpdf\Pdf;
 
 /**
  * ManagerController implements the CRUD actions for Admin model.
@@ -148,5 +149,24 @@ class LaporanController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
+    }
+    public function actionReport(){
+        $content=$this->renderPartial('report');
+
+        $pdf = new Pdf([
+            'mode' => Pdf::MODE_CORE,
+            'format' => Pdf::FORMAT_A4,
+            'orientation' => Pdf::ORIENT_PORTRAIT,
+            'destination' => Pdf::DEST_BROWSER,
+            'content' => $content,
+            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+            'cssInline' => 'kv-heading-1{font-size:18px}',
+            'options' => ['title' => 'Laporan Presensi Maganger'],
+            'methods' => [
+                'SetHeader' => ['Laporan Presensi Maganger'],
+                'SetFooter' => ['{PAGENO}'],
+                ]
+        ]);
+        return $pdf->render();
     }
 }
