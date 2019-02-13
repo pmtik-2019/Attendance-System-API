@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         
     </form>
-    <?php Pjax::begin(); ?>
+    
     
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
     <!-- <p>
@@ -83,5 +83,4 @@ $this->params['breadcrumbs'][] = $this->title;
         endif;    
 }
     ?>
-    <?php Pjax::end(); ?>
 </div>
