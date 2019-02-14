@@ -53,7 +53,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-lg-6">
                     <?php echo \insolita\wgadminlte\LteSmallBox::widget([
                         'type' => \insolita\wgadminlte\LteConst::COLOR_ORANGE,
-                        'title' => $absensiCount,
+                        'title' => $absensiCount['berangkat'],
                         'text' => 'Berangkat',
                         'icon' => 'glyphicon glyphicon-briefcase',
                         'link' => '#'
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="col-lg-6">
                     <?php echo \insolita\wgadminlte\LteSmallBox::widget([
                                 'type' => \insolita\wgadminlte\LteConst::COLOR_BLUE,
-                                'title' => $absensiCount,
+                                'title' => $absensiCount['pulang'],
                                 'text' => 'Pulang',
                                 'icon' => 'glyphicon glyphicon-road',
                                 'link' => '#'

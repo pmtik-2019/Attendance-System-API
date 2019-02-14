@@ -39,9 +39,6 @@ $this->params['breadcrumbs'][] = $this->title;
     
     
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-    <!-- <p>
-        <?= Html::a('Tambah Data Laporan', ['create'], ['class' => 'btn btn-success']) ?>
-    </p> -->
     <br/>
     <?php 
         if ($dataProvider !== null){
@@ -49,9 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
     ?>
         <p> Data Tidak Ditemukan</p>
     <?php
-    else: 
+    else:
     ?>
-    <?= Html::a('<span class="glyphicon glyphicon-download"></span> Download Laporan', ['report'], ['class' => 'btn btn-success']) ?>
+    <form action="" method="GET">
+        <input type="hidden" name="export" value="true">
+        <input type="hidden" name="Absensi[tanggal_waktu]" value="<?=$dateRange['tanggal_waktu'];?>">
+        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-download"></span> Download Laporan</button>
+    </form>
+    <!-- <?= Html::a('<span class="glyphicon glyphicon-download"></span> Download Laporan', ['test'], ['class' => 'btn btn-success']) ?> -->
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>

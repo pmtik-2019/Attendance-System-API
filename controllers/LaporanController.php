@@ -52,6 +52,7 @@ class LaporanController extends BaseController
         $model = new Absensi();
         
         $dateRange = Yii::$app->request->get('Absensi');
+        $exportPdf = Yii::$app->request->get('export');
         $dataProvider = NULL;
 
         if (!empty($dateRange['tanggal_waktu'])) {
@@ -61,11 +62,32 @@ class LaporanController extends BaseController
             $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
             if ($dataProvider == null) $dataProvider = false;
 
+            if (!empty($exportPdf) && $exportPdf == true) {
+                $pdf = new Pdf([
+                    'mode' => Pdf::MODE_CORE,
+                    'format' => Pdf::FORMAT_A4,
+                    'orientation' => Pdf::ORIENT_PORTRAIT,
+                    'destination' => Pdf::DEST_BROWSER,
+                    'content' => $this->renderPartial('report', [
+                        'dataProvider' => $dataProvider,
+                    ]),
+                    'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
+                    'cssInline' => 'kv-heading-1{font-size:18px}',
+                    'options' => ['title' => 'Laporan Presensi Maganger'],
+                    'methods' => [
+                        'SetHeader' => ['Laporan Presensi Maganger'],
+                        'SetFooter' => ['{PAGENO}'],
+                        ]
+                ]);
+                
+                return $pdf->render();
+            }
         }
 
         return $this->_render('index', [
             'dataProvider' => $dataProvider,
-            'model' => $model,            
+            'model' => $model,
+            'dateRange' => $dateRange,            
             'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
         ]);
     }
@@ -149,24 +171,5 @@ class LaporanController extends BaseController
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
-    }
-    public function actionReport(){
-        $content=$this->renderPartial('report');
-
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_CORE,
-            'format' => Pdf::FORMAT_A4,
-            'orientation' => Pdf::ORIENT_PORTRAIT,
-            'destination' => Pdf::DEST_BROWSER,
-            'content' => $content,
-            'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-            'cssInline' => 'kv-heading-1{font-size:18px}',
-            'options' => ['title' => 'Laporan Presensi Maganger'],
-            'methods' => [
-                'SetHeader' => ['Laporan Presensi Maganger'],
-                'SetFooter' => ['{PAGENO}'],
-                ]
-        ]);
-        return $pdf->render();
     }
 }

@@ -45,6 +45,11 @@ class UserController extends BaseController
         $dateRange = Yii::$app->request->get('Absensi');
         $dataProvider = NULL;
 
+        $absensiCount = [
+            'pulang' => 0,
+            'berangkat'=> 0
+        ];
+        
         if (!empty($dateRange['tanggal_waktu'])) {
 
             list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
@@ -52,32 +57,21 @@ class UserController extends BaseController
             $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE nim = :nim AND date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':nim' => Yii::$app->user->identity->username, ':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
             if ($dataProvider == null) $dataProvider = false;
 
+            if (is_array($dataProvider)) {
+                foreach ($dataProvider as $prov) {
+                    if ($prov['status_kedatangan'] == 1) {
+                        $absensiCount['berangkat']++;
+                    } else {
+                        $absensiCount['pulang']++;
+                    }
+                }
+            }
         }
 
         return $this->_render('laporan', [
             'dataProvider' => $dataProvider,
             'model' => $model,            
-            'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
+            'absensiCount' => $absensiCount,
         ]);
-    }
-
-    public function actionPdfreport(){
-        $content=$this->renderPartial('report');
-
-        $pdf = new Pdf([
-            'mode' => Pdf::MODE_CORE, 
-            'format' => Pdf::FORMAT_A4, 
-            'orientation' => Pdf::ORIENT_PORTRAIT, 
-            'destination' => Pdf::DEST_BROWSER, 
-            'content' => $content, 
-            'cssFile' =>'@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-            'cssInline' => 'kv-heading-1{font-size:18px}', 
-            'options' => ['title' =>'Laporan Presensi Maganger', 
-            'methods' => [
-                'SetHeader' =>['Laporan Presensi Maganger'], 
-                'SetFooter' =>['{PAGENO}'],
-            ]
-        ]]);
-        return $pdf->render(); 
     }
 }
