@@ -29,6 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ?>
         <div class="form-group">
             <?= Html::submitButton('Lihat Laporan', ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton('Lihat Semua', ['class' => 'btn btn-success', 'name' => 'method', 'value' => 'show-all']) ?>
         </div>
         
         <?php
