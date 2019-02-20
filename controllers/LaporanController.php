@@ -53,13 +53,18 @@ class LaporanController extends BaseController
         
         $dateRange = Yii::$app->request->get('Absensi');
         $exportPdf = Yii::$app->request->get('export');
+        $dataMethod = Yii::$app->request->get('method');
         $dataProvider = NULL;
 
-        if (!empty($dateRange['tanggal_waktu'])) {
+        if (!empty($dateRange['tanggal_waktu']) || $dataMethod == 'show-all') {
+            if ($dataMethod != 'show-all') {
+                list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
 
-            list($date_start, $date_end) = explode(' - ', $dateRange['tanggal_waktu']);
+                $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
+            } else {
+                $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE 1")->queryAll();
+            }
 
-            $dataProvider = $connection->createCommand("SELECT * FROM absensi WHERE date(tanggal_waktu) >= :date_start AND date(tanggal_waktu) <= :date_end", [':date_start' => $date_start, ':date_end' => $date_end])->queryAll();
             if ($dataProvider == null) $dataProvider = false;
 
             if (!empty($exportPdf) && $exportPdf == true) {
