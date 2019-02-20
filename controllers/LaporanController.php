@@ -63,6 +63,11 @@ class LaporanController extends BaseController
             if ($dataProvider == null) $dataProvider = false;
 
             if (!empty($exportPdf) && $exportPdf == true) {
+
+                // echo $this->renderPartial('report', [
+                //     'dataProvider' => $dataProvider,
+                // ]); exit;
+
                 $pdf = new Pdf([
                     'mode' => Pdf::MODE_CORE,
                     'format' => Pdf::FORMAT_A4,
@@ -72,7 +77,7 @@ class LaporanController extends BaseController
                         'dataProvider' => $dataProvider,
                     ]),
                     'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-                    'cssInline' => 'kv-heading-1{font-size:18px}',
+                    'cssInline' => 'kv-heading-1{font-size:18px} .content{ font-family: \'Times New Roman\',Times, serif}',
                     'options' => ['title' => 'Laporan Presensi Maganger'],
                     'methods' => [
                         'SetHeader' => ['Laporan Presensi Maganger'],

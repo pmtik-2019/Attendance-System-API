@@ -3,10 +3,12 @@
 $this->title = 'Laporan';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <!--header-->
+<content>
   <table class="header">
     <tr>
-      <td style="text-align:left; width:10%">gambar</td>
+      <td style="text-align:left; width:10%"></td>
       <td style="text-align:center; width:80%"> UPT TIK UNS <br>LAPORAN PRESENSI MAGANGER</td>
       <td style="text-align:right; width:10%"><?=date('d/m/Y');?></td>
     </tr>
@@ -44,4 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
          
 
     ?>
+    </content>
 </div>
+
