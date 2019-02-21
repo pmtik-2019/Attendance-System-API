@@ -6,15 +6,25 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <!--header-->
 <content>
-  <table class="header">
+  <table>
     <tr>
-      <td style="text-align:left; width:10%"></td>
-      <td style="text-align:center; width:80%"> UPT TIK UNS <br>LAPORAN PRESENSI MAGANGER</td>
-      <td style="text-align:right; width:10%"><?=date('d/m/Y');?></td>
+      <td><img src="../web/img/uns.png" width=15%></td>
+      <td style="width: 75%;">
+        <center>
+          <b> KEMENTERIAN RISET, TEKNOLOGI, DAN PENDIDIKAN TINGGI <br/> 
+          UNIVERSITAS SEBELAS MARET <br/>
+          UPT. TEKNOLOGI INFORMASI DAN KOMUNIKASI <br/>
+          Sekretariat : Jalan Ir. Sutami No. 36 A Kentingan Surakarta Telp.(0271) 638959 </b> 
+        </center>
+      </td>
+      <td style="text-align: right; width: 10%"></td>
+     
     </tr>
   </table>
 <hr/>
-<div class="absensi-index"> 
+ <center><b>LAPORAN PRESENSI MAGANGER</b></center>
+<div class="absensi-index">
+        </td>
             <div class="box-body">
               <table id="example1" class="table table-bordered table-striped table-responsive">
                 <thead>
@@ -46,6 +56,6 @@ $this->params['breadcrumbs'][] = $this->title;
          
 
     ?>
-    </content>
+</content>
 </div>
 

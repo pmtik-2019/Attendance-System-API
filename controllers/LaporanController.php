@@ -82,11 +82,11 @@ class LaporanController extends BaseController
                         'dataProvider' => $dataProvider,
                     ]),
                     'cssFile' => '@vendor/kartik-v/yii2-mpdf/src/assets/kv-mpdf-bootstrap.min.css',
-                    'cssInline' => 'kv-heading-1{font-size:18px} .content{ font-family: \'Times New Roman\',Times, serif}',
+                    'cssInline' => 'kv-heading-1{font-size:18px}',
                     'options' => ['title' => 'Laporan Presensi Maganger'],
                     'methods' => [
-                        'SetHeader' => ['Laporan Presensi Maganger'],
-                        'SetFooter' => ['{PAGENO}'],
+                        'SetHeader' => ['Laporan Presensi Maganger - ' . date('d/m/Y')],
+                        'SetFooter' => ['{PAGENO} - Maganger SAT TIK 2019'],
                         ]
                 ]);
                 
@@ -99,6 +99,7 @@ class LaporanController extends BaseController
             'model' => $model,
             'dateRange' => $dateRange,            
             'absensiCount' => !empty($dataProvider) ? count($dataProvider) : 0,
+            'dataMethod' => $dataMethod
         ]);
     }
 
