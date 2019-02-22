@@ -66,22 +66,45 @@ class SiteController extends BaseController
                 ])->andWhere('date(tanggal_waktu) = DATE(NOW())')->orderBy(['id_absensi' => SORT_DESC])->limit(1)->one();
                 
                 $isSafeToSave = true;
-                // jika pernah absen hari ini
-                if (!is_null($getLastAbsensi)) {
-                    // Harus berbeda dengan absen sebelumnya
-                    if ($getLastAbsensi->status_kedatangan == $postDataAbsensi->status_kedatangan) {
-                        // tolak! karena misalkan pulang-pulang atau datang-datang
-                        $isSafeToSave = 'Anda tidak bisa melakukan presensi sama seperti sebelumnya!';
-                    }
-                } else {
-                    // Harus datang dulu
+                $dontSaveRequest = false;
+
+                if (is_null($getLastAbsensi)) {
                     if ($postDataAbsensi->status_kedatangan == 2) {
                         // tolak! karena belum datang masa sudah pulang
                         $isSafeToSave = 'Anda belum presensi kedatangan!';
                     }
+                } else {
+                    if (!is_null($getLastAbsensi) && $postDataAbsensi->status_kedatangan == 1) {
+                        $isSafeToSave = 'Anda tidak harus persensi kedatangan lagi!';
+                    } else {
+                        if (explode(' ', $getLastAbsensi->tanggal_waktu)[1] != '16:00:00') {
+                            $isSafeToSave = 'Anda sudah presensi pulang, buat apa pulang lagi? Besok lagi aja!';
+                        } else {
+                            # Update the last presensi
+                            $getLastAbsensi->tanggal_waktu = date("Y-m-d H:i:s");
+                            $getLastAbsensi->save();
+
+                            $dontSaveRequest = true;
+                        }
+                    }
                 }
 
-                if ($isSafeToSave === true && $absensi->save()) {
+                if ($isSafeToSave === true) {
+                    if ($dontSaveRequest === false) {
+                        $absensi->save();
+
+                        if (is_null($getLastAbsensi)) {
+                            $absensi_pulang = new Absensi();
+                            $postDataAbsensi_copy = $custom_post_model;
+
+                            $postDataAbsensi_copy['Absensi']['tanggal_waktu'] = date("Y-m-d") . " 16:00:00";
+                            $postDataAbsensi_copy['Absensi']['status_kedatangan'] = 2;
+
+                            $absensi_pulang->load($postDataAbsensi_copy);
+                            $absensi_pulang->save();
+                        }
+                    }
+
                     self::setSuccess('Presensi berhasil ditambahkan!');
                 } else {
                     self::setError($isSafeToSave);
