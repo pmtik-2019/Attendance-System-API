@@ -116,7 +116,11 @@ class DivisiController extends BaseController
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        try {
+            $this->findModel($id)->delete();
+        } catch (yii\db\IntegrityException $e) {
+            # Do nothing
+        }
 
         return $this->redirect(['index']);
     }
