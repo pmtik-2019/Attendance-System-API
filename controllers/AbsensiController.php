@@ -22,7 +22,7 @@ class AbsensiController extends BaseController
 
     public static function authenticate($rule, $action)
     {
-        return Yii::$app->user->identity->_type == Identity::TYPE_ADMIN;
+        return false;
     }
 
     public function behavior()
