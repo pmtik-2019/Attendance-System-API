@@ -30,3 +30,7 @@ body {
 a > i.fa {
     margin-left: 5px;
 }
+
+th, td {
+    font-weight: normal;
+}

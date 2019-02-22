@@ -37,9 +37,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($dataProvider as $tb_1): ?>
+                <?php foreach($dataProvider as $index => $tb_1): ?>
                     <tr>
-                    <th><?=$tb_1['id_absensi']?></th>
+                    <th><?=($index + 1)?></th>
                     <th><?=$tb_1['nim']?></th>
                     <th><?=$tb_1['tanggal_waktu']?></th>
                     <th><?=$tb_1['laporan_kerja'] == NULL ?  '-' : $tb_1['laporan_kerja']?></th>
