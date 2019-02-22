@@ -52,6 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <form action="" method="GET">
         <input type="hidden" name="export" value="true">
         <input type="hidden" name="Absensi[tanggal_waktu]" value="<?=$dateRange['tanggal_waktu'];?>">
+        <input type="hidden" name="method" value="<?=$dataMethod;?>">
         <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-download"></span> Download Laporan</button>
     </form>
     <!-- <?= Html::a('<span class="glyphicon glyphicon-download"></span> Download Laporan', ['test'], ['class' => 'btn btn-success']) ?> -->
