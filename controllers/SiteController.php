@@ -82,6 +82,7 @@ class SiteController extends BaseController
                         } else {
                             # Update the last presensi
                             $getLastAbsensi->tanggal_waktu = date("Y-m-d H:i:s");
+                            $getLastAbsensi->laporan_kerja = $custom_post_model['Absensi']['laporan_kerja'];
                             $getLastAbsensi->save();
 
                             $dontSaveRequest = true;
